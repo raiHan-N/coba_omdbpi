@@ -33,10 +33,12 @@ $('.search-button').on('click', function(){
         success: results => {
             const movies = results.Search;
             let cards ='';
-            movies.forEach(m => {
-                cards += showCard(m);
-            });
-            $('.movie-container').html(cards);
+            if(movies !== undefined){
+                movies.forEach(m => {
+                    cards += showCard(m);
+                });
+            
+                $('.movie-container').html(cards);
             // console.log(movies);
     
             $('.modal-detail-button').on('click', function(){
@@ -51,6 +53,9 @@ $('.search-button').on('click', function(){
                     }
                 });
             });
+        } else {
+            alert('Movies not found');
+        } 
         },
         error: e =>{
             console.log(e.responseText);
